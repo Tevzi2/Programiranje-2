@@ -14,7 +14,7 @@
 
 void Printer::print()
 {
-    std::for_each(queue.begin(), queue.end(), [](auto el) { std::cout << el; });
+    std::for_each(queue.begin(), queue.end(), [](auto el) { std::cout << el << std::endl; });
 
     queue.clear();
 }

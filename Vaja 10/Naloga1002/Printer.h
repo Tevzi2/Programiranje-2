@@ -60,9 +60,12 @@ class Printer {
         template<bool_method T>
         void remove(T f)
         {
-            for(auto it = queue.begin(); it < queue.end(); it++)
+            for(auto it = queue.begin(); it < queue.end(); ++it)
                 if(f(*it))
+                {
                     queue.erase(it);
+                    it--;
+                }
         }
 
         template<bool_method_arg T>
@@ -77,15 +80,15 @@ class Printer {
         template<bool_method T, string_method F>
         void checkAndCorrect(T check, F correct)
         {
-            for (auto it = queue.begin(); it < queue.end(); it++)
+            for (auto it = queue.begin(); it < queue.end(); ++it)
                 if (check(*it)) *it = correct(*it);
         }
 
         template<bool_method T>
         void printSelect(T f)
         {
-            for(auto it = queue.begin(); it < queue.end(); it++)
-                if(f(*it)) std::cout << *it;
+            for(auto it = queue.begin(); it < queue.end(); ++it)
+                if(f(*it)) std::cout << *it << std::endl;
 
             remove(f);
         }
@@ -93,7 +96,7 @@ class Printer {
         template<string_method T>
         void modoifyAll(T f)
         {
-            for(auto it = queue.begin(); it < queue.end(); it++)
+            for(auto it = queue.begin(); it < queue.end(); ++it)
                 *it = f(*it);
         }
 
