@@ -5,23 +5,32 @@
 #include <string>
 #include <algorithm>
 #include <sstream>
+#include <concepts>
+
+template <class From, class To>
+concept convertible_to =
+std::is_convertible_v<From, To> &&
+requires {
+    static_cast<To>(std::declval<From>());
+};
+
 
 template<typename T>
 concept bool_method = requires(T f)
 {
-    {f("t")} -> std::convertible_to<bool>;
+    {f("t")} -> convertible_to<bool>;
 };
 
 template<typename T>
 concept bool_method_arg = requires(T f)
 {
-    {f("t", "t")} -> std::convertible_to<bool>;
+    {f("t", "t")} -> convertible_to<bool>;
 };
 
 template<typename T>
 concept string_method = requires(T f)
 {
-    {f("t")} -> std::convertible_to<std::string>;
+    {f("t")} -> convertible_to<std::string>;
 };
 
 class Printer {
