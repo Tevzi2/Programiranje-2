@@ -14,7 +14,6 @@ requires {
     static_cast<To>(std::declval<From>());
 };
 
-
 template<typename T>
 concept bool_method = requires(T f)
 {
@@ -49,6 +48,12 @@ class Printer {
             ss >> out;
 
             queue.push_back(out);
+        }
+
+        template<>
+        void add<std::string>(std::string el)
+        {
+            queue.push_back(el);
         }
 
         template<typename T, typename... Args>
