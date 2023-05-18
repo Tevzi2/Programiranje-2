@@ -4,6 +4,7 @@
 #include <Exercise.hpp>
 #include <Person.hpp>
 #include <PrintIfStrengthExercise.h>
+#include <WeightLog.hpp>
 
 class ExerciseTracker {
     public:
@@ -22,9 +23,15 @@ class ExerciseTracker {
         Exercise* find(bool (*c)(Exercise*));
 
         void printExercises(PrintIfStrengthExercise i);
+
+        void add(Date date, float weight);
+
+        WeightLog* find(bool (*c)(WeightLog*)) const;
+
     private:
         ExerciseTracker();
 
         std::vector<Exercise*> exercises;
+        std::vector<WeightLog*> weights;
         Person* trainee;
 };

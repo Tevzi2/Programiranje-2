@@ -68,4 +68,21 @@ int main()
 
     std::cout << "Print all strength exercises: " << std::endl;
     trackerOne.printExercises(PrintIfStrengthExercise());
+
+    trackerOne.add({12, 2, 2023}, 50);
+    trackerOne.add({11, 3, 2023}, 73);
+    trackerOne.add({12, 5, 2023}, 200);
+    trackerOne.add({16, 2, 2023}, 110);
+
+    auto found = trackerOne.find([](WeightLog* w) -> bool {
+        return w->getWeight() > 100;
+    });
+
+    if(found != nullptr)
+    {
+        std::cout << "Found weight that is heavier than 100kg:" << std::endl;
+        std::cout << *found << std::endl;
+    }
+    else
+        std::cout << "No weight log was heavier than 100kg" << std::endl;
 }

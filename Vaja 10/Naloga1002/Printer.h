@@ -6,6 +6,7 @@
 #include <algorithm>
 #include <sstream>
 #include <concepts>
+#include <functional>
 
 template <class From, class To>
 concept convertible_to =
@@ -30,6 +31,12 @@ template<typename T>
 concept string_method = requires(T f)
 {
     {f("t")} -> convertible_to<std::string>;
+};
+
+template<typename T>
+concept number_concept = requires(T t)
+{
+    {t} -> convertible_to<uint32_t>;
 };
 
 class Printer {
@@ -71,8 +78,7 @@ class Printer {
             });
         }
 
-        template<bool_method T>
-        void remove(T f)
+        void remove(std::function<bool(std::string)> f)
         {
             for(auto it = queue.begin(); it < queue.end(); ++it)
                 if(f(*it))
@@ -82,8 +88,7 @@ class Printer {
                 }
         }
 
-        template<bool_method_arg T>
-        void sort(T f)
+        void sort(std::function<bool(std::string, std::string)> f)
         {
             for(size_t i = 0; i < queue.size(); i++)
                 for(size_t j = i+1; j < queue.size(); j++)
@@ -91,15 +96,13 @@ class Printer {
                         std::swap(queue[i], queue[j]);
         }
 
-        template<bool_method T, string_method F>
-        void checkAndCorrect(T check, F correct)
+        void checkAndCorrect(std::function<bool(std::string)> check, std::function<std::string(std::string)> correct)
         {
             for (auto it = queue.begin(); it < queue.end(); ++it)
                 if (check(*it)) *it = correct(*it);
         }
 
-        template<bool_method T>
-        void printSelect(T f)
+        void printSelect(std::function<bool(std::string)> f)
         {
             for(auto it = queue.begin(); it < queue.end(); ++it)
                 if(f(*it)) std::cout << *it << std::endl;
@@ -107,11 +110,33 @@ class Printer {
             remove(f);
         }
 
-        template<string_method T>
-        void modoifyAll(T f)
+        void modoifyAll(std::function<std::string(std::string)> f)
         {
             for(auto it = queue.begin(); it < queue.end(); ++it)
                 *it = f(*it);
+        }
+
+        void removeIndex(uint32_t ind)
+        {
+            if(ind > queue.size()-1) return;
+
+            queue.erase(queue.begin()+ind);
+        }
+
+        template <number_concept... Args>
+        void removeIndex(Args... args)
+        {
+            std::vector<uint32_t> vec;
+
+            ([&]
+            {
+                vec.push_back(args);
+            } (), ...);
+
+            std::sort(vec.begin(), vec.end(), [](uint32_t l, uint32_t r) -> bool { return l > r; });
+
+            for(const auto& el : vec)
+                removeIndex(el);
         }
 
     private:

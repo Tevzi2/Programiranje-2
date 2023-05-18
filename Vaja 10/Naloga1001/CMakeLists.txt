@@ -4,7 +4,7 @@ project(Naloga10_1)
 set(CMAKE_CXX_STANDARD 23)
 
 add_executable(Naloga10_1
-        Exercise/StrengthExercise.cpp Exercise/Person.cpp Exercise/MuscleGroup.cpp Exercise/ExerciseTracker.cpp Exercise/Exercise.cpp Exercise/Difficulty.cpp Exercise/CompetativeExercise.cpp Time/Date.cpp Time/Time.cpp naloga1001.cpp Exercise/PrintIfStrengthExercise.cpp)
+        Exercise/StrengthExercise.cpp Exercise/Person.cpp Exercise/MuscleGroup.cpp Exercise/ExerciseTracker.cpp Exercise/Exercise.cpp Exercise/Difficulty.cpp Exercise/CompetativeExercise.cpp Time/Date.cpp Time/Time.cpp naloga1001.cpp Exercise/PrintIfStrengthExercise.cpp Exercise/WeightLog.cpp)
 
 target_include_directories(
         "${CMAKE_PROJECT_NAME}"

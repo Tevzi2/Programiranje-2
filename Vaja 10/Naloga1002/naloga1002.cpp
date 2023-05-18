@@ -118,4 +118,32 @@ int main()
     p.print();
 
     NEW_LINE;
+
+    // eight remove from queue at index/es
+
+    std::cout << "eight remove from queue at index/es" << std::endl;
+
+    p.add(1, 2, 1.2f, "lole Ha Ha!");
+
+    p.addMultiple(std::vector<std::string>{"testing", "Testing", "shesting", "rene je", "zan ni", "prog", "prog2", "prog3"});
+
+    p.removeIndex(2, 1, 0);
+
+    p.print();
+
+    NEW_LINE;
+
+    // nine remove from queue at index/es in reverse order
+
+    std::cout << "eight remove from queue at index/es" << std::endl;
+
+    p.add(1, 2, 1.2f, "lole Ha Ha!");
+
+    p.addMultiple(std::vector<std::string>{"testing", "Testing", "shesting", "rene je", "zan ni", "prog", "prog2", "prog3"});
+
+    p.removeIndex(0, 1, 2);
+
+    p.print();
+
+    NEW_LINE;
 }

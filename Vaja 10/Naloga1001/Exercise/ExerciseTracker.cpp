@@ -18,6 +18,11 @@ ExerciseTracker::~ExerciseTracker()
     {
         delete exercise;
     }
+
+    for(const auto& log : weights)
+    {
+        delete log;
+    }
 }
 
 void ExerciseTracker::addExercise(const Exercise* exercise)
@@ -70,4 +75,18 @@ Exercise* ExerciseTracker::find(bool (*c)(Exercise*))
 void ExerciseTracker::printExercises(PrintIfStrengthExercise i)
 {
     std::for_each(exercises.begin(), exercises.end(), i);
+}
+
+void ExerciseTracker::add(Date date, float weight)
+{
+    weights.push_back(new WeightLog(date, weight));
+}
+
+WeightLog* ExerciseTracker::find(bool (*c)(WeightLog*)) const
+{
+    for(const auto& el : weights)
+        if(c(el))
+            return el;
+
+    return nullptr;
 }
