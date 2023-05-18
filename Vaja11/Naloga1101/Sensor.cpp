@@ -26,8 +26,3 @@ Sensor::Sensor(uint32_t id, bool active)
 
     return out;
 }
-
-[[nodiscard]] float Sensor::readValue() const
-{
-    return (float)(rand()) / (float)(rand());
-}

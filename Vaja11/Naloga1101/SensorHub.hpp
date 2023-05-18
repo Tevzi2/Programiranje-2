@@ -2,20 +2,24 @@
 
 #include <memory>
 #include <Sensor.hpp>
+#include <PressureSensor.hpp>
+#include <PressureSensorP12.hpp>
+#include <DuplicateSensorException.hpp>
+#include <fstream>
 #include <vector>
 
 class SensorHub {
     public:
-        SensorHub();
+        SensorHub() = default;
 
-        void addSensor(std::unique_ptr<Sensor> sensor);
+        void addSensor(std::shared_ptr<Sensor> sensor);
 
-        void readValues();
+        void readValues() const;
 
         void saveSensorsToFile(const std::string& file);
 
         void loadSensorsFromFile(const std::string& file);
 
     private:
-        std::vector<std::unique_ptr<Sensor>> sensors{};
+        std::vector<std::shared_ptr<Sensor>> sensors{};
 };

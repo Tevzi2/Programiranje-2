@@ -7,6 +7,8 @@
 class Sensor
 {
     public:
+        Sensor() = delete;
+
         Sensor(uint32_t id, bool active);
 
         [[nodiscard]] uint32_t getId() const;
@@ -15,7 +17,7 @@ class Sensor
 
         [[nodiscard]] virtual std::string toString() const;
 
-        [[nodiscard]] virtual float readValue() const;
+        [[nodiscard]] virtual float readValue() const = 0;
 
     protected:
         uint32_t id;
