@@ -1,7 +1,7 @@
 cmake_minimum_required(VERSION 3.25)
 project(Naloga1102)
 
-set(CMAKE_CXX_STANDARD 14)
+set(CMAKE_CXX_STANDARD 20)
 
 include_directories(.)
 
@@ -12,7 +12,7 @@ add_executable(Naloga1102
         PressureSensorP12.cpp
         PressureUnit.cpp
         Sensor.cpp
-        SensorHub.cpp)
+        SensorHub.cpp Log.cpp LogType.cpp)
 
 target_include_directories(
         "${CMAKE_PROJECT_NAME}"

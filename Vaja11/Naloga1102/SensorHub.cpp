@@ -66,10 +66,10 @@ void SensorHub::loadSensorsFromFile(const std::string& file)
                     addSensor(sens);
                 }catch(DuplicateSensorException& e)
                 {
-                    std::cout << "Failed to add sensor due to duplicate id: " << e.what() << std::endl;
+                    Log(LogType::ERROR) << "Error when adding sensor: " << e.what() << '\n';
                 }catch(std::exception& e)
                 {
-                    std::cout << "Some other error happened: " << e.what() << std::endl;
+                    Log(LogType::ERROR) << "Some other error happened: " << e.what() << '\n';
                 }
             }
             else if(args.size() == 3)
@@ -81,10 +81,10 @@ void SensorHub::loadSensorsFromFile(const std::string& file)
                     addSensor(sens);
                 }catch(DuplicateSensorException& e)
                 {
-                    std::cout << "Failed to add sensor due to duplicate id: " << e.what() << std::endl;
+                    Log(LogType::ERROR) << "Error when adding sensor: " << e.what() << '\n';
                 }catch(std::exception& e)
                 {
-                    std::cout << "Some other error happened: " << e.what() << std::endl;
+                    Log(LogType::ERROR) << "Some other error happened: " << e.what() << '\n';
                 }
             }
         }

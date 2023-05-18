@@ -6,6 +6,7 @@
 #include <PressureSensorP12.hpp>
 #include <DuplicateSensorException.hpp>
 #include <fstream>
+#include <Log.hpp>
 #include <vector>
 
 class SensorHub {
