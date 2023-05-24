@@ -5,6 +5,7 @@
 #include <PressureSensor.hpp>
 #include <PressureSensorP12.hpp>
 #include <DuplicateSensorException.hpp>
+#include <FileNotFoundException.hpp>
 #include <fstream>
 #include <Log.hpp>
 #include <vector>

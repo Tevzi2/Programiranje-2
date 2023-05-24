@@ -11,7 +11,7 @@ DuplicateSensorException::DuplicateSensorException(std::string  message)
     ;
 }
 
-const char* DuplicateSensorException::what() const throw()
+const char* DuplicateSensorException::what() const noexcept
 {
     return message.c_str();
 }

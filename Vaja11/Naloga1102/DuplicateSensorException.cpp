@@ -3,15 +3,19 @@
 //
 
 #include <DuplicateSensorException.hpp>
-#include <utility>
 
 DuplicateSensorException::DuplicateSensorException(std::string  message)
     :message(std::move(message))
 {
-    ;
+    toBeLogged(message);
 }
 
-const char* DuplicateSensorException::what() const throw()
+[[nodiscard]] const char* DuplicateSensorException::what() const throw()
 {
     return message.c_str();
+}
+
+void DuplicateSensorException::toBeLogged(std::string message) const
+{
+    Log(LogType::ERROR) << message << '\n';
 }

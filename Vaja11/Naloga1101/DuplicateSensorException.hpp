@@ -7,7 +7,7 @@ class DuplicateSensorException : public std::exception {
     public:
         explicit DuplicateSensorException(std::string  message);
 
-        const char* what() const throw() override;
+        const char* what() const noexcept override;
 
     private:
         std::string message;

@@ -4,11 +4,11 @@
 #include <string>
 #include <Log.hpp>
 
-class DuplicateSensorException : public LoggedException {
+class FileNotFoundException : public LoggedException {
     public:
-        explicit DuplicateSensorException(std::string  message);
+        explicit FileNotFoundException(std::string  message);
 
-        [[nodiscard]] const char* what() const throw() override;
+        [[nodiscard]] const char* what() const noexcept override;
 
         void toBeLogged(std::string message) const override;
 

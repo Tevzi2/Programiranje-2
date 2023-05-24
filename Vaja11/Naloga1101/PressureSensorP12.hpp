@@ -1,6 +1,7 @@
 #pragma once
 
 #include<PressureSensor.hpp>
+#include<InvalidLocationException.hpp>
 
 class PressureSensorP12 final : public PressureSensor {
     public:

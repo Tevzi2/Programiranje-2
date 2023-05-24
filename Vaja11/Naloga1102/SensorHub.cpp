@@ -18,6 +18,9 @@ void SensorHub::addSensor(std::shared_ptr<Sensor> sensor)
 
 void SensorHub::readValues() const
 {
+    if(sensors.size() == 0)
+        Log(LogType::WARN) << "Reading sensor valeus while hub is empty.\n";
+
     for(const auto& el : sensors)
         if(el->isActive())
             std::cout << "Sensor value: " << el->readValue() << " sensor data: " << el->toString() << std::endl;
@@ -66,10 +69,10 @@ void SensorHub::loadSensorsFromFile(const std::string& file)
                     addSensor(sens);
                 }catch(DuplicateSensorException& e)
                 {
-                    Log(LogType::ERROR) << "Error when adding sensor: " << e.what() << '\n';
+                    std::cout << "Error when adding sensor: " << e.what() << '\n';
                 }catch(std::exception& e)
                 {
-                    Log(LogType::ERROR) << "Some other error happened: " << e.what() << '\n';
+                    std::cout << "Some other error happened: " << e.what() << '\n';
                 }
             }
             else if(args.size() == 3)
@@ -81,12 +84,16 @@ void SensorHub::loadSensorsFromFile(const std::string& file)
                     addSensor(sens);
                 }catch(DuplicateSensorException& e)
                 {
-                    Log(LogType::ERROR) << "Error when adding sensor: " << e.what() << '\n';
+                    std::cout << "Error when adding sensor: " << e.what() << '\n';
                 }catch(std::exception& e)
                 {
-                    Log(LogType::ERROR) << "Some other error happened: " << e.what() << '\n';
+                    std::cout << "Some other error happened: " << e.what() << '\n';
                 }
             }
         }
+    }
+    else
+    {
+        throw FileNotFoundException("The file: " + file + ", does not exist.");
     }
 }

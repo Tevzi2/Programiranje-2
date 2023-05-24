@@ -12,7 +12,7 @@ add_executable(Naloga1102
         PressureSensorP12.cpp
         PressureUnit.cpp
         Sensor.cpp
-        SensorHub.cpp Log.cpp LogType.cpp)
+        SensorHub.cpp Log.cpp LogType.cpp FileNotFoundException.cpp)
 
 target_include_directories(
         "${CMAKE_PROJECT_NAME}"
